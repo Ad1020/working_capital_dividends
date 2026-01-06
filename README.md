@@ -73,7 +73,7 @@ available at time *t–1*.
 
 
 ## Author
-ﬁ
+
 **Adis Arifi**  
 HEC Lausanne – University of Lausanne  
 Email: adis.arifi@unil.ch  
