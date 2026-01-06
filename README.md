@@ -26,16 +26,21 @@ All data used in this project are publicly available:
 These sources were selected to ensure full transparency and reproducibility
 without requiring paid subscriptions or proprietary databases.
 
----
 
 ## Repository Structure
 
-.
-├── notebooks/            # Jupyter notebooks (data collection, analysis)
-├── output/               # Generated Excel files, regression tables
-├── figures/              # Figures used in the report
-├── data/                 # Intermediate datasets (if applicable)
-└── README.md
+working-capital-dividends.ipynb  
+Main Jupyter Notebook containing the full analysis pipeline:
+- data collection from SEC and Yahoo Finance
+- data cleaning and variable construction
+- fixed-effects panel regressions
+- machine learning prediction models (Random Forest)
+
+output/  
+Generated Excel files and intermediate results.
+
+figures/  
+Figures used in the final report.
 
 
 
@@ -57,11 +62,11 @@ available at time *t–1*.
 
 ## How to Reproduce the Results
 
-1. Install the required Python libraries listed at the top of each notebook
-2. Run the data collection notebook to retrieve SEC and Yahoo Finance data
-3. Execute the regression and machine learning notebooks sequentially
-4. All tables and figures are automatically exported to the `output/` and
-   `figures/` folders
+1. Install the required Python libraries listed in `requirements.txt`
+2. Open the Jupyter Notebook `working-capital-dividends.ipynb`
+3. Run the notebook from top to bottom to execute the full workflow
+4. All tables and figures are automatically exported to the `output/` and `figures/` folders
+
 
 
 ## Environment
