@@ -85,8 +85,10 @@ correctly in a standard Python environment
 
 1. Install the required Python libraries listed in `requirements.txt`
 2. Open the Jupyter Notebook `working-capital-dividends.ipynb`
-3. Run the notebook from top to bottom to execute the full workflow
-4. All tables and figures are automatically exported to the `output/` and `figures/` folders
+3. Run the notebook from top to bottom to execute the full workflow.  
+   This step automatically downloads the raw data and generates the cleaned
+   datasets stored locally in the `output/` directory.
+4. All tables and figures are automatically exported to the `figures/` folders.
 
 
 ## Environment
