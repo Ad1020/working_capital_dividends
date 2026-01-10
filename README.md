@@ -1,6 +1,6 @@
 # Working Capital and Dividend Policy
 
-This repository contains the code and data used for the project 
+This repository contains the code used for the project 
 **“Working Capital and Dividend Policy: Evidence from U.S. Firms”**, 
 conducted as part of the *Advanced Programming* course at HEC Lausanne (UNIL).
 
@@ -29,18 +29,33 @@ without requiring paid subscriptions or proprietary databases.
 
 ## Repository Structure
 
-working-capital-dividends.ipynb  
-Main Jupyter Notebook containing the full analysis pipeline:
-- data collection from SEC and Yahoo Finance
-- data cleaning and variable construction
-- fixed-effects panel regressions
-- machine learning prediction models (Random Forest)
+**proposal.md**  
+  Initial project proposal submitted for approval.
 
-output/  
-Generated Excel files and intermediate results.
+**main.py**  
+  Entry point script used to verify that the project runs correctly.
 
-figures/  
-Figures used in the final report.
+**requirements.txt**  
+  List of Python dependencies required to run the code.
+
+ **working-capital-dividends.ipynb**  
+  Main Jupyter Notebook containing the full analysis pipeline:
+  - data collection from SEC and Yahoo Finance  
+  - data cleaning and variable construction  
+  - fixed-effects panel regressions  
+  - machine learning prediction models (Random Forest)
+
+**output/** *(generated locally)*  
+  Directory automatically created when running the notebook, containing
+  generated Excel files with cleaned and merged datasets.  
+  This folder is not included in the repository.
+
+**figures/**  
+  Final figures and LaTeX tables used in the final report.
+
+**Working_Capital_Dividends_Report.pdf**  
+  Final project report.
+
 
 
 
@@ -60,13 +75,18 @@ To avoid look-ahead bias, all predictive models rely exclusively on information
 available at time *t–1*.
 
 
+## Entry Point
+
+An entry point script (`main.py`) is provided to verify that the project runs
+correctly in a standard Python environment
+
+
 ## How to Reproduce the Results
 
 1. Install the required Python libraries listed in `requirements.txt`
 2. Open the Jupyter Notebook `working-capital-dividends.ipynb`
 3. Run the notebook from top to bottom to execute the full workflow
 4. All tables and figures are automatically exported to the `output/` and `figures/` folders
-
 
 
 ## Environment
