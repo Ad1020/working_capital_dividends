@@ -90,6 +90,11 @@ correctly in a standard Python environment
    datasets stored locally in the `output/` directory.
 4. All tables and figures are automatically exported to the `figures/` folders.
 
+## Reproducibility
+
+Random seeds (`random_state = 42`) are fixed in all machine learning models to
+ensure that results are fully reproducible across executions.
+
 
 ## Environment
 
