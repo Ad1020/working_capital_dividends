@@ -38,7 +38,7 @@ without requiring paid subscriptions or proprietary databases.
 **requirements.txt**  
   List of Python dependencies required to run the code.
 
- **working-capital-dividends.ipynb**  
+ **working-capital-dividends.py**  
   Main Jupyter Notebook containing the full analysis pipeline:
   - data collection from SEC and Yahoo Finance  
   - data cleaning and variable construction  
@@ -84,7 +84,7 @@ correctly in a standard Python environment
 ## How to Reproduce the Results
 
 1. Install the required Python libraries listed in `requirements.txt`
-2. Open the Jupyter Notebook `working-capital-dividends.ipynb`
+2. Open the Jupyter Notebook `working-capital-dividends.py`
 3. Run the notebook from top to bottom to execute the full workflow.  
    This step automatically downloads the raw data and generates the cleaned
    datasets stored locally in the `output/` directory.
