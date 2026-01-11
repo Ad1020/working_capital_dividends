@@ -75,10 +75,14 @@ To avoid look-ahead bias, all predictive models rely exclusively on information
 available at time *t–1*.
 
 
-## Entry Point
+## How to Run the Project
 
-An entry point script (`main.py`) is provided to verify that the project runs
-correctly in a standard Python environment
+1. Clone the GitHub repository:
+   ```bash
+   git clone https://github.com/Ad1020/working_capital_dividends
+   cd working_capital_dividends
+2. Install the required Python libraries: pip install -r requirements.txt
+3. Run the entry point script: python3 main.py
 
 
 ## How to Reproduce the Results
