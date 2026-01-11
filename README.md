@@ -85,15 +85,6 @@ available at time *t–1*.
 3. Run the entry point script: python3 main.py
 
 
-## How to Reproduce the Results
-
-1. Install the required Python libraries listed in `requirements.txt`
-2. Open the Python script `working-capital-dividends.py`
-3. Run the Python script from top to bottom to execute the full workflow.  
-   This step automatically downloads the raw data and generates the cleaned
-   datasets stored locally in the `output/` directory.
-4. All tables and figures are automatically exported to the `figures/` folders.
-
 ## Reproducibility
 
 Random seeds (`random_state = 42`) are fixed in all machine learning models to
