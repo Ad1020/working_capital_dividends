@@ -332,8 +332,57 @@ def run(show_plots=True):
     print("\n=== TABLE OF RESULTS ===")
     print(results_table)
 
+    
     # =====================================================
-    # 6) PANEL FIXED EFFECTS (BASELINE) - ULTRA ROBUSTE + TABLEAU
+    # 4) GRAPH
+    # =====================================================
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    from pathlib import Path
+    FIGURES_DIR = Path("figures")
+    FIGURES_DIR.mkdir(exist_ok=True)
+
+    # Recreate df_model from the REG data
+    df_plot = reg_clean.copy()
+
+    # Construct the necessary variables if needed
+    df_plot = df_plot.sort_values(["Ticker", "Year"])
+    df_plot["dwc_ta"] = df_plot.groupby("Ticker")["WC_to_TA"].diff()
+
+    df_plot["ln_dps"] = np.where(df_plot["DPS_Annual"] > 0,
+                                np.log(df_plot["DPS_Annual"]),
+                                np.nan)
+    df_plot["dlog_dps"] = df_plot.groupby("Ticker")["ln_dps"].diff()
+
+    # Drop NA
+    df_plot = df_plot.dropna(subset=["dwc_ta", "dlog_dps"])
+
+    # Axes
+    x_pp = df_plot["dwc_ta"] * 100
+    y_percent = df_plot["dlog_dps"] * 100
+
+    # Trend line
+    b1, b0 = np.polyfit(x_pp, y_percent, 1)
+
+    # Plot
+    plt.figure(figsize=(6,4))
+    plt.scatter(x_pp, y_percent, alpha=0.4, s=15)
+    plt.plot(np.sort(x_pp), b1*np.sort(x_pp) + b0, color="red", linewidth=2)
+
+    plt.xlabel("Δ(WC / Total Assets) (percentage points)")
+    plt.ylabel("Dividend growth (%)")
+    plt.title("Dividend growth vs. changes in Working Capital")
+
+    plt.tight_layout()
+    plt.savefig(FIGURES_DIR / "fig1_wc_dividend_regression.png",
+                dpi=300, bbox_inches="tight")
+    plt.show()
+    plt.close()
+
+    # =====================================================
+    # 6) PANEL FIXED EFFECTS (BASELINE) - ULTRA ROBUSTE + TABLE
     # =====================================================
     import numpy as np
     import pandas as pd
@@ -381,49 +430,7 @@ def run(show_plots=True):
     print("\nResume :")
     print(fe_model.summary())
     
-    import matplotlib.pyplot as plt
-    import numpy as np
-
-    from pathlib import Path
-    FIGURES_DIR = Path("figures")
-    FIGURES_DIR.mkdir(exist_ok=True)
-
-    # Recréer df_model à partir des données REG
-    df_plot = reg_clean.copy()
-
-    # Construire les variables nécessaires si besoin
-    df_plot = df_plot.sort_values(["Ticker", "Year"])
-    df_plot["dwc_ta"] = df_plot.groupby("Ticker")["WC_to_TA"].diff()
-
-    df_plot["ln_dps"] = np.where(df_plot["DPS_Annual"] > 0,
-                                np.log(df_plot["DPS_Annual"]),
-                                np.nan)
-    df_plot["dlog_dps"] = df_plot.groupby("Ticker")["ln_dps"].diff()
-
-    # Drop NA
-    df_plot = df_plot.dropna(subset=["dwc_ta", "dlog_dps"])
-
-    # Axes (en pourcentage)
-    x_pp = df_plot["dwc_ta"] * 100
-    y_percent = df_plot["dlog_dps"] * 100
-
-    # Droite de tendance
-    b1, b0 = np.polyfit(x_pp, y_percent, 1)
-
-    # Plot
-    plt.figure(figsize=(6,4))
-    plt.scatter(x_pp, y_percent, alpha=0.4, s=15)
-    plt.plot(np.sort(x_pp), b1*np.sort(x_pp) + b0, color="red", linewidth=2)
-
-    plt.xlabel("Δ(WC / Total Assets) (percentage points)")
-    plt.ylabel("Dividend growth (%)")
-    plt.title("Dividend growth vs. changes in Working Capital")
-
-    plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "fig1_wc_dividend_regression.png",
-                dpi=300, bbox_inches="tight")
-    plt.show()
-    plt.close()
+    
     # =====================================================
     # 7) COMPREHENSIVE MODEL — PANEL FIXED EFFECTS (WITHOUT WC)
     # Δlog(DPS) = ROA + Leverage + Size + firm FE + ε
@@ -631,7 +638,7 @@ def run(show_plots=True):
     df = pd.read_excel(path, sheet_name="REG_2015_2019")
 
     # =====================================================
-    # 2) Build variable (if needed)
+    # 2) Build variable 
     # =====================================================
     df = df.sort_values(["Ticker", "Year"])
     df["dwc_ta"] = df.groupby("Ticker")["WC_to_TA"].diff()
@@ -909,7 +916,7 @@ def run(show_plots=True):
     with open(FIGURES_DIR / "table_pred.tex", "w") as f:
         f.write(econ_pred.to_latex(index=False, escape=False))
 
-    print("✅ Exporté :", FIGURES_DIR / "table_pred.tex")
+    print("✅ Exported :", FIGURES_DIR / "table_pred.tex")
     import matplotlib.pyplot as plt
     import numpy as np
 
