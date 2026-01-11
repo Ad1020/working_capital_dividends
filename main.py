@@ -1,4 +1,4 @@
-from working_capital_dividends2 import run
+from working_capital_dividends import run
 
 def main():
     run(show_plots=True)
